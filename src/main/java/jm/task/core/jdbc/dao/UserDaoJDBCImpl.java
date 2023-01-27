@@ -16,7 +16,7 @@ public class UserDaoJDBCImpl implements UserDao {
     public void createUsersTable() {
         try (Connection connection = Util.getConnection()){
             Statement statement = connection.createStatement();
-            statement.executeUpdate("CREATE TABLE user (Id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(60), lastName VARCHAR(60), age INT)");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS user (Id INT PRIMARY KEY AUTO_INCREMENT, name VARCHAR(60), lastName VARCHAR(60), age INT)");
             System.out.println("База создана");
         } catch (SQLException e) {
             e.printStackTrace();
@@ -27,7 +27,7 @@ public class UserDaoJDBCImpl implements UserDao {
     //Удаление таблицы User(ов)
         try (Connection connection = Util.getConnection()) {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("DROP TABLE user");
+            statement.executeUpdate("DROP TABLE IF EXISTS user");
             System.out.println("Таблица удалена");
         } catch (SQLException e) {
             e.printStackTrace();
