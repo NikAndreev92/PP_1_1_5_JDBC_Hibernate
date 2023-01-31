@@ -21,20 +21,20 @@ public class Util {
     private static final String URL = "jdbc:mysql://localhost:3306/test";
     private static final String USERNAME = "root";
     private static final String PASSWORD = "root";
+    private static SessionFactory sessionFactory;
 
     public static Connection getConnection() {
         Connection connection = null;
         try {
             Class.forName(DRIVER);
-            connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
-        } catch (SQLException |ClassNotFoundException e) {
+            connection = DriverManager.getConnection(URL, USERNAME, PASSWORD);
+        } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
             System.out.println("Связи нет");
         }
         return connection;
     }
 
-    private static SessionFactory sessionFactory;
     public static SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {

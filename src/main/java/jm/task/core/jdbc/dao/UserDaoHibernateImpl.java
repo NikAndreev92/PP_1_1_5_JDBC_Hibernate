@@ -50,6 +50,9 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
             System.out.println("User с именем " +  name + " добавлен в базу данных");
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
             System.out.println("Ошибка при добавлении пользователя");
         }
@@ -64,6 +67,9 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
             System.out.println("Пользователь удалён из таблицы");
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
             System.out.println("Ошибка при удалении пользователя");
         }
@@ -88,6 +94,9 @@ public class UserDaoHibernateImpl implements UserDao {
             transaction.commit();
             System.out.println("Таблица очищена");
         } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
             e.printStackTrace();
             System.out.println("Ошибка при очистке таблицы");
         }
